@@ -5,6 +5,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: '/auto-details-shop/',
   server: {
     port: 3000,
   },
