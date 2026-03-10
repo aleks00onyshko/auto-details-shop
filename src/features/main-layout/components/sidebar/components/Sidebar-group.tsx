@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, {memo, useState} from 'react';
 
 export interface SidebarGroupProps {
   label: string;
-  icon: string;
+  icon?: string;
   children: React.ReactNode;
   openByDefault?: boolean;
 }
 
-export const SidebarGroup = ({ label, children, icon, openByDefault }: SidebarGroupProps) => {
+export const SidebarGroup = memo(({label, children, icon, openByDefault}: SidebarGroupProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(!!openByDefault);
 
   return (
@@ -33,4 +33,4 @@ export const SidebarGroup = ({ label, children, icon, openByDefault }: SidebarGr
       {isOpen && <div className="sidebar-group-children bg-gray-50/50 pb-2">{children}</div>}
     </div>
   );
-};
+});

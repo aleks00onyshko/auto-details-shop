@@ -1,37 +1,33 @@
-import { createBrowserRouter, redirect } from 'react-router-dom';
+import {createBrowserRouter, redirect} from 'react-router-dom';
 
-import { Authentication, Login, Register } from '@features/authentication';
-import {
-  loginAction,
-  registerAction,
-  selectIsAuthenticated,
-  selectIsGuest,
-} from '@features/authentication/store';
-import { MainLayout } from '@shared/components/main-layout';
-import { CatalogueGrid, ProductList } from '@features/catalogue/components';
-import { Dashboard } from '@features/dashboard';
-import { Catalogue } from '@features/catalogue';
-import { clearFilters, setFilterPanelOpened } from '@features/catalogue/store';
+import {Authentication, Login, Register} from '@features/authentication';
+import {loginAction, registerAction, selectIsAuthenticated, selectIsGuest,} from '@features/authentication/store';
+import {MainLayout} from '@features/main-layout';
+import {CatalogueGrid, ProductList} from '@features/catalogue/components';
+import {Dashboard} from '@features/dashboard';
+import {Catalogue} from '@features/catalogue';
+import {clearFilters, setFilterPanelOpened} from '@features/catalogue/store';
 
-import { ProtectedRoute } from './utils';
-import { store } from '../../store';
+import {ProtectedRoute} from './utils';
+import {store} from '../../store';
+import {Chat} from "@features/chat";
 
 export const router = createBrowserRouter(
   [
     {
-      element: <ProtectedRoute redirectPath="/dashboard" conditionFn={selectIsGuest} />,
+      element: <ProtectedRoute redirectPath="/dashboard" conditionFn={selectIsGuest}/>,
       children: [
         {
-          element: <Authentication />,
+          element: <Authentication/>,
           children: [
             {
               path: 'login',
-              element: <Login />,
+              element: <Login/>,
               action: loginAction,
             },
             {
               path: 'register',
-              element: <Register />,
+              element: <Register/>,
               action: registerAction,
             },
           ],
@@ -39,18 +35,18 @@ export const router = createBrowserRouter(
       ],
     },
     {
-      element: <ProtectedRoute redirectPath="/login" conditionFn={selectIsAuthenticated} />,
+      element: <ProtectedRoute redirectPath="/login" conditionFn={selectIsAuthenticated}/>,
       children: [
         {
-          element: <MainLayout />,
+          element: <MainLayout chat={<Chat/>}/>,
           children: [
             {
               path: 'dashboard',
-              element: <Dashboard />,
+              element: <Dashboard/>,
             },
             {
               path: 'catalogue',
-              element: <Catalogue />,
+              element: <Catalogue/>,
               children: [
                 {
                   index: true,
@@ -59,7 +55,7 @@ export const router = createBrowserRouter(
                     store.dispatch(setFilterPanelOpened(window.innerWidth >= 1024));
                     return null;
                   },
-                  element: <CatalogueGrid />,
+                  element: <CatalogueGrid/>,
                 },
                 {
                   path: 'results',
@@ -93,10 +89,10 @@ export const router = createBrowserRouter(
     {
       path: '/',
       loader: () => {
-        const { isAuthenticated } = store.getState().authentication;
+        const {isAuthenticated} = store.getState().authentication;
         return isAuthenticated ? redirect('/dashboard') : redirect('/login');
       },
     },
   ],
-  { basename: 'auto-details-shop' }
+  {basename: 'auto-details-shop'}
 );

@@ -1,4 +1,6 @@
-export const SidebarLogo = () => (
+import {memo} from "react";
+
+export const SidebarLogo = memo(() => (
   <div className="p-6 border-b border-gray-100 flex items-center gap-3">
     <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold shadow-sm">
       AD
@@ -8,4 +10,4 @@ export const SidebarLogo = () => (
       <span className="text-[10px] text-gray-400 uppercase tracking-widest">Parts Manager</span>
     </div>
   </div>
-);
+));

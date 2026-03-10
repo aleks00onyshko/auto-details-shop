@@ -1,4 +1,5 @@
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
+import {memo} from "react";
 
 export interface SidebarItemProps {
   disabled: boolean;
@@ -8,18 +9,18 @@ export interface SidebarItemProps {
   onClick?: () => void;
 }
 
-export const SidebarItem = ({
-  disabled,
-  label,
-  navigateToPath,
-  icon,
-  onClick,
-}: SidebarItemProps) => {
+export const SidebarItem = memo(({
+                                   disabled,
+                                   label,
+                                   navigateToPath,
+                                   icon,
+                                   onClick,
+                                 }: SidebarItemProps) => {
   return (
     <NavLink
       onClick={onClick}
       to={disabled ? '#' : navigateToPath}
-      className={({ isActive }) => `
+      className={({isActive}) => `
                 sidebar-item flex
                 items-center px-6 py-3 text-sm font-medium transition-colors w-full
                 ${disabled ? 'opacity-30 cursor-not-allowed' : 'text-gray-500 hover:bg-gray-50'}
@@ -30,4 +31,4 @@ export const SidebarItem = ({
       <span className="flex-1 text-left">{label}</span>
     </NavLink>
   );
-};
+});

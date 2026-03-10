@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react';
-import { User } from '../../../../core/models/user.ts';
-import { useClickOutside } from '../../../hooks/use-click-outside.ts';
+import {memo, useRef, useState} from 'react';
+
+import {User} from '@core/models/user.ts';
+import {useClickOutside} from '@shared/hooks/use-click-outside.ts';
 
 export interface UserMenuProps {
   user: User;
@@ -8,7 +9,7 @@ export interface UserMenuProps {
 }
 
 // Note: overlay can be split into separate component, duplicated to not overcomplicate things
-export const UserMenu = ({ user, logout }: UserMenuProps) => {
+export const UserMenu = memo((({user, logout}: UserMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -23,7 +24,8 @@ export const UserMenu = ({ user, logout }: UserMenuProps) => {
         }}
         className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 transition-all cursor-pointer group select-none"
       >
-        <div className="w-5 h-5 rounded bg-blue-600 flex items-center justify-center text-[9px] font-bold text-white uppercase">
+        <div
+          className="w-5 h-5 rounded bg-blue-600 flex items-center justify-center text-[9px] font-bold text-white uppercase">
           {user.username?.charAt(0) || 'G'}
         </div>
         <span className="text-xs font-semibold text-slate-100">{user.username || 'Guest'}</span>
@@ -33,12 +35,13 @@ export const UserMenu = ({ user, logout }: UserMenuProps) => {
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"/>
         </svg>
       </div>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-2xl z-[200] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 origin-top-right">
+        <div
+          className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-2xl z-[200] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 origin-top-right">
           <div className="p-3 bg-gray-50/50 border-b border-gray-100">
             <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">
               Session
@@ -74,4 +77,4 @@ export const UserMenu = ({ user, logout }: UserMenuProps) => {
       )}
     </div>
   );
-};
+}));
