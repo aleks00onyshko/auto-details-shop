@@ -58,7 +58,7 @@ src/
 │ └── Chat     # Chat, Redux infrastructure
 │ ├── ...
 ├── core/
-│   ├── models     # Project shared interfaces
+│   ├── types     # Project shared interfaces
 │   └── routes     # routing config and helpers
 ├── shared/
 │   ├── components     # Table, Select, FormField

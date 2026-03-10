@@ -1,4 +1,4 @@
-import { FilterCategory } from '../../models';
+import {FilterCategory} from '../../types';
 
 export const CAR_PARTS_FILTERS: FilterCategory[] = [
   {
