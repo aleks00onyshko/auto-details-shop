@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
-import { SelectItem } from './models/select-item.ts';
-import { SelectOverlay } from './components/select-overlay.tsx';
-import { SelectTriggerButton } from './components/select-trigger-button.tsx';
-import { useClickOutside } from '../../hooks/use-click-outside.ts';
+import {useRef, useState} from 'react';
+import {SelectItem} from './types/select-item.ts';
+import {SelectOverlay} from './selectOverlay.tsx';
+import {SelectTriggerButton} from './selectTriggerButton.tsx';
+import {useClickOutside} from '../../lib/use-click-outside.ts';
 
 export interface SelectProps<T extends SelectItem> {
   label: string;
@@ -13,12 +13,12 @@ export interface SelectProps<T extends SelectItem> {
 }
 
 export const Select = <T extends SelectItem>({
-  items,
-  selectedItemsIds,
-  label,
-  onChange,
-  loading,
-}: SelectProps<T>) => {
+                                               items,
+                                               selectedItemsIds,
+                                               label,
+                                               onChange,
+                                               loading,
+                                             }: SelectProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 

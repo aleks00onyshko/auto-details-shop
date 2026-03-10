@@ -27,11 +27,23 @@
       "@features/*": [
         "src/features/*"
       ],
+      "@features": [
+        "src/features/index.ts"
+      ],
+      "@shared": [
+        "src/shared/index.ts"
+      ],
       "@shared/*": [
         "src/shared/*"
       ],
+      "@core": [
+        "src/core/index.ts"
+      ],
       "@core/*": [
         "src/core/*"
+      ],
+      "@store": [
+        "src/store/index.ts"
       ],
       "@store/*": [
         "src/store/*"

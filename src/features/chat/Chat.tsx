@@ -1,16 +1,17 @@
 import {MouseEvent, useEffect, useRef} from 'react';
 
-import {useAppDispatch, useAppSelector} from '@store/hooks.ts';
+import {useAppDispatch, useAppSelector} from '@store';
 
-import {selectIsOpen, setOpen} from './store';
-import {ChatHeader} from './components/Chat-header.tsx';
-import {ChatFooter} from './components/Chat-footer.tsx';
-import {useGetMessagesQuery, useSendMessageMutation} from './store/chat-api.ts';
-import {ChatMessage} from './components/Chat-message.tsx';
+import {ChatHeader} from './components/ChatHeader.tsx';
+import {ChatFooter} from './components/ChatFooter.tsx';
+import {ChatMessage} from './components/ChatMessage.tsx';
+import {setOpen} from './api/chat-slice.ts';
+import {useGetMessagesQuery, useSendMessageMutation} from './api/chat-api.ts';
+import {selectIsOpen} from './api/chat-selectors.ts';
 
 export const Chat = () => {
   const isOpen = useAppSelector(selectIsOpen);
-  
+
   if (!isOpen) return null;
 
   const dispatch = useAppDispatch();

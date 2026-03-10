@@ -1,11 +1,11 @@
 import {memo, useCallback} from 'react';
 import {useAppDispatch} from '@store/hooks.ts';
-import {setOpen} from '@features/chat/store';
+import {setOpen} from "@features/chat";
 
 import {isSidebarGroup, sidebarConfig} from '../sidebar/configs/sidebar-config.ts';
-import {SidebarBottomActions} from './components/Sidebar-bottom-actions.tsx';
-import {SidebarGroup} from "./components/Sidebar-group.tsx";
-import {SidebarItem} from "./components/Sidebar-item.tsx";
+import {SidebarBottomActions} from './SidebarBottomActions.tsx';
+import {SidebarGroup} from "./SidebarGroup.tsx";
+import {SidebarItem} from "./SidebarItem.tsx";
 import {Sidebar} from "./Sidebar.tsx";
 
 export interface ConfiguredSidebarProps {

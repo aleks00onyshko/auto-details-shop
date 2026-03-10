@@ -1,0 +1,12 @@
+import {User} from '@core';
+
+export interface Comment {
+  id: number;
+  body: string;
+  user: Pick<User, 'username'>;
+}
+
+export interface CommentResponse {
+  comments: Comment[];
+  total: number;
+}

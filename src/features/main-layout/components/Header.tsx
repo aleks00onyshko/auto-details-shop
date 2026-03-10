@@ -1,7 +1,7 @@
 import {memo} from "react";
 
-import {UserMenu} from '../components/User-menu.tsx';
-import {User} from '@core/models';
+import {UserMenu} from './UserMenu.tsx';
+import {User} from '@core';
 
 export interface HeaderProps {
   user: User;

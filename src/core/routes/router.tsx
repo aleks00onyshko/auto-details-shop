@@ -1,16 +1,21 @@
 import {createBrowserRouter, redirect} from 'react-router-dom';
 
-import {Authentication, Login, Register} from '@features/authentication';
-import {loginAction, registerAction, selectIsAuthenticated, selectIsGuest,} from '@features/authentication/store';
+import {store} from '@store';
+import {
+  Authentication,
+  Login,
+  loginAction,
+  Register,
+  registerAction,
+  selectIsAuthenticated,
+  selectIsGuest
+} from '@features/authentication';
 import {MainLayout} from '@features/main-layout';
-import {CatalogueGrid, ProductList} from '@features/catalogue/components';
-import {Dashboard} from '@features/dashboard';
-import {Catalogue} from '@features/catalogue';
-import {clearFilters, setFilterPanelOpened} from '@features/catalogue/store';
-
-import {ProtectedRoute} from './utils';
-import {store} from '../../store';
 import {Chat} from "@features/chat";
+import {Dashboard} from '@features/dashboard';
+import {Catalogue, CatalogueGrid, clearFilters, ProductList, setFilterPanelOpened} from '@features/catalogue';
+
+import {ProtectedRoute} from './utils/protected-route.tsx';
 
 export const router = createBrowserRouter(
   [

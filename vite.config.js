@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
-import { resolve } from 'path';
+import {resolve} from 'path';
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
@@ -10,11 +10,11 @@ export default defineConfig({
     port: 3000,
   },
   resolve: {
-    alias: {
-      '@features': resolve(__dirname, 'src/features'),
-      '@shared': resolve(__dirname, 'src/shared'),
-      '@core': resolve(__dirname, 'src/core'),
-      '@store': resolve(__dirname, 'src/store'),
-    },
+    alias: [
+      {find: '@features', replacement: resolve(__dirname, 'src/features')},
+      {find: '@shared', replacement: resolve(__dirname, 'src/shared')},
+      {find: '@core', replacement: resolve(__dirname, 'src/core')},
+      {find: '@store', replacement: resolve(__dirname, 'src/store')},
+    ],
   },
 });

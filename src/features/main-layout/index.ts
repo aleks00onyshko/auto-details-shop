@@ -1,2 +1,2 @@
 export * from './components';
-export { MainLayout } from './Main-layout.tsx';
+export {MainLayout} from './MainLayout.tsx';
