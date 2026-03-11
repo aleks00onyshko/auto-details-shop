@@ -1,21 +1,20 @@
-import { Outlet } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '@store/hooks.ts';
+import {Outlet} from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from '@store';
 
-import { FilterPanel } from './components/filter-panel/Filter-panel.tsx';
-import { FilterChips, FilterChipsCategory } from './components/filter-chips';
-import { useCatalogueNavigation, useFilterCategories } from './utils';
+import {useCatalogueNavigation, useFilterCategories} from './utils';
+import {clearFilters, removeFilterCategoryItem, setFilterPanelOpened,} from './api/catalogue-slice.ts';
+import {FilterChips} from './components/filterChips/FilterChips';
+import {FilterChipsCategory} from './components/filterChips/FilterChipsCategory';
+import {FilterPanel} from './components/filterPanel/FilterPanel';
 import {
-  clearFilters,
-  removeFilterCategoryItem,
   selectCatalogueFilterCategoriesAsArray,
   selectCatalogueFiltersActive,
-  selectCatalogueFiltersPanelOpened,
-  setFilterPanelOpened,
-} from './store';
+  selectCatalogueFiltersPanelOpened
+} from './api/catalogue-selectors.ts';
 
 export const Catalogue = () => {
   const dispatch = useAppDispatch();
-  const { categories, onCategoryChanged } = useFilterCategories();
+  const {categories, onCategoryChanged} = useFilterCategories();
 
   useCatalogueNavigation();
 
@@ -36,7 +35,7 @@ export const Catalogue = () => {
                   label={category.label}
                   selectedItems={category.selectedItems}
                   onRemove={(filterItemId: string) =>
-                    dispatch(removeFilterCategoryItem({ categoryId: category.id, filterItemId }))
+                    dispatch(removeFilterCategoryItem({categoryId: category.id, filterItemId}))
                   }
                 />
               ))}
@@ -66,7 +65,7 @@ export const Catalogue = () => {
           </div>
 
           <div className="p-4 lg:p-8 max-w-7xl mx-auto w-full flex-1">
-            <Outlet />
+            <Outlet/>
           </div>
         </main>
 

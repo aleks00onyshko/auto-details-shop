@@ -1,14 +1,12 @@
-import { useCallback, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@store/hooks.ts';
-import { deriveQueryParamsFromOtherFilterCategories } from '@features/catalogue/utils';
+import {useCallback, useEffect} from 'react';
+import {useAppDispatch, useAppSelector} from '@store/hooks.ts';
+import {deriveQueryParamsFromOtherFilterCategories} from '@features/catalogue/utils';
 
-import {
-  catalogueApi,
-  selectCatalogueFilterCategoriesAsArray,
-  updateFilterCategory,
-} from '../../store';
-import { FilterItem } from '../../models';
-import { shallowEqual } from 'react-redux';
+import {selectCatalogueFilterCategoriesAsArray,} from '../../api/catalogue-selectors.ts';
+import {catalogueApi} from '../../api/catalogue-api.ts'
+import {updateFilterCategory} from '../../api/catalogue-slice.ts'
+import {FilterItem} from '../../types';
+import {shallowEqual} from 'react-redux';
 
 export const useFilterCategories = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +20,7 @@ export const useFilterCategories = () => {
             requestUrl: category.requestUrl,
             queryParams: deriveQueryParamsFromOtherFilterCategories(category.id, categories),
           },
-          { subscribe: false }
+          {subscribe: false}
         )
       );
     });
@@ -31,13 +29,13 @@ export const useFilterCategories = () => {
   }, [categories]);
 
   const categoriesWithItems = categories.map((category) => {
-    const { data: items = [], isFetching } =
+    const {data: items = [], isFetching} =
       catalogueApi.endpoints.getFilterCategoryData.useQueryState({
         requestUrl: category.requestUrl,
         queryParams: deriveQueryParamsFromOtherFilterCategories(category.id, categories),
       });
 
-    return { ...category, items, isLoading: isFetching };
+    return {...category, items, isLoading: isFetching};
   });
 
   const onCategoryChanged = useCallback(
@@ -53,5 +51,5 @@ export const useFilterCategories = () => {
     [dispatch]
   );
 
-  return { categories: categoriesWithItems, onCategoryChanged };
+  return {categories: categoriesWithItems, onCategoryChanged};
 };

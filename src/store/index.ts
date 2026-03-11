@@ -1,20 +1,12 @@
-import { AnyAction, combineReducers, configureStore } from '@reduxjs/toolkit';
-import {
-  FLUSH,
-  PAUSE,
-  PERSIST,
-  persistReducer,
-  persistStore,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
-} from 'redux-persist';
+import {AnyAction, combineReducers, configureStore} from '@reduxjs/toolkit';
+import {FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE,} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { dashboardApi } from '@features/dashboard/store';
-import { authenticationApi, authenticationReducer } from '@features/authentication/store';
-import { catalogueApi, catalogueReducer } from '@features/catalogue/store';
-import { chatApi, chatReducer } from '@features/chat/store';
+import {authenticationApi, authenticationReducer} from '@features/authentication';
+
+import {dashboardApi} from "@features/dashboard";
+import {catalogueApi, catalogueReducer} from "@features/catalogue";
+import {chatApi, chatReducer} from "@features/chat";
 
 const appReducer = combineReducers({
   authentication: authenticationReducer,
@@ -61,3 +53,4 @@ export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export {useAppSelector, useAppDispatch} from './hooks.ts'

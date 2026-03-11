@@ -1,8 +1,8 @@
-import { useNavigate, useSubmit } from 'react-router-dom';
-
-import { AuthForm } from './Auth-form.tsx';
 import React from 'react';
-import { UserCredentials } from '../models/user-credentials.ts';
+import {useNavigate, useSubmit} from 'react-router-dom';
+
+import {AuthForm} from './AuthForm.tsx';
+import {UserCredentials} from '../types/user-credentials.ts';
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export const Register = () => {
     e.preventDefault();
 
     submit(
-      { ...credentials },
+      {...credentials},
       {
         method: 'POST',
         encType: 'application/json',

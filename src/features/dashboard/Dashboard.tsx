@@ -1,8 +1,8 @@
-import { AtAGlance } from './components/dashboard-at-glance/Dashboard-at-glance.tsx';
-import { DashboardUpdates } from './components/dashboard-updates/Dashboard-updates.tsx';
-import { DashboardChart } from './components/dashboard-chart/Dashboard-chart.tsx';
-import { DashboardChartHeader } from './components/dashboard-chart/Dasboard-chart-header.tsx';
-import { DashboardStatsGrid } from './components/dashboard-stats-grid/Dashboard-stats-grid.tsx';
+import {AtAGlance} from "./dashboardAtGlance/DashboardAtGlance";
+import {DashboardChart} from "./dashboardChart/Dashboard-chart";
+import {DashboardChartHeader} from "./dashboardChart/DashboardChartHeader";
+import {DashboardStatsGrid} from "./dashboardStatsGrid/DashboardStatsGrid";
+import {DashboardUpdates} from "./dashboardUpdates/DashboardUpdates";
 
 export const Dashboard = () => {
   return (
@@ -13,13 +13,13 @@ export const Dashboard = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-stretch">
         <div className="lg:col-span-4 flex flex-col gap-4 lg:gap-8">
-          <AtAGlance />
-          <DashboardUpdates />
+          <AtAGlance/>
+          <DashboardUpdates/>
         </div>
 
         <div className="lg:col-span-8 flex flex-col gap-4 lg:gap-8">
-          <DashboardChart header={<DashboardChartHeader />} />
-          <DashboardStatsGrid />
+          <DashboardChart header={<DashboardChartHeader/>}/>
+          <DashboardStatsGrid/>
         </div>
       </div>
     </div>

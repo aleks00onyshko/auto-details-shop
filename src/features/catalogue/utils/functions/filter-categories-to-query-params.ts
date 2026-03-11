@@ -1,4 +1,4 @@
-import { FilterCategory } from '../../models';
+import {FilterCategory} from '../../types/filter-category.ts';
 
 export function convertFilterCategoriesToQueryParams(categories: FilterCategory[]): string {
   return categories
